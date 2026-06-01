@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ann Maria Dev — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f0eb;--card:#fff;--ink:#1a1208;--ink2:#5c5347;--ink3:#9c9080;--green:#1e6b45;--green-l:#d4efe3;--peach:#f97c4a;--peach-l:#fde8de;--blue:#2e5be8;--blue-l:#dde6ff;--yellow:#e8b62e;--yellow-l:#fdf3d4;--purple:#7c4ddc;--purple-l:#ede5ff;--r:16px}
+body{font-family:'Satoshi',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding:24px;font-size:14px}
+.page{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.hero{background:var(--ink);border-radius:24px;padding:44px 48px;color:#fff;position:relative;overflow:hidden}
+.hero-blob1{position:absolute;width:340px;height:340px;background:radial-gradient(circle,#3d8c62 0%,transparent 70%);top:-80px;right:-60px;opacity:0.5}
+.hero-blob2{position:absolute;width:220px;height:220px;background:radial-gradient(circle,#f97c4a 0%,transparent 70%);bottom:-40px;left:40px;opacity:0.35}
+.hero-content{position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:100px;padding:4px 12px;font-size:12px;color:rgba(255,255,255,0.7);margin-bottom:20px}
+.hero-tag::before{content:'';width:6px;height:6px;background:#4ade80;border-radius:50%;display:inline-block}
+.hero h1{font-size:clamp(40px,7vw,64px);font-weight:700;line-height:1.05;margin-bottom:14px;letter-spacing:-2px}
+.hero h1 span{background:linear-gradient(135deg,#6ee7b7,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:15px;color:rgba(255,255,255,0.6);max-width:440px;line-height:1.6;margin-bottom:28px;font-weight:300}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.pill{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:100px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,0.75)}
+.hero-contact{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:rgba(255,255,255,0.5)}
+.hero-contact a{color:rgba(255,255,255,0.7);text-decoration:none}
+.bento{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.card{background:var(--card);border-radius:var(--r);padding:24px;border:1px solid rgba(0,0,0,0.06)}
+.card.full{grid-column:1/-1}
+.card.two{grid-column:span 2}
+.card-label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);font-weight:500;margin-bottom:16px}
+.card-big{font-size:44px;font-weight:700;letter-spacing:-1.5px;line-height:1;margin-bottom:6px}
+.card-desc{font-size:13px;color:var(--ink2);line-height:1.55;font-weight:300}
+.stat-green{background:var(--green-l);border-color:transparent}.stat-green .card-big{color:var(--green)}
+.stat-peach{background:var(--peach-l);border-color:transparent}.stat-peach .card-big{color:var(--peach)}
+.stat-blue{background:var(--blue-l);border-color:transparent}.stat-blue .card-big{color:var(--blue)}
+.about-card{background:var(--yellow-l);border-color:transparent}
+.about-card p{font-size:14px;line-height:1.7;color:#5a4a1a;font-weight:300}
+.about-card p strong{font-weight:600;color:#3a2e0a}
+.skill-rows{display:flex;flex-direction:column;gap:10px}
+.skill-row-item{display:flex;flex-direction:column;gap:5px}
+.skill-row-item span{font-size:12px;color:var(--ink2);display:flex;justify-content:space-between}
+.skill-bar{height:5px;background:rgba(0,0,0,0.07);border-radius:100px;overflow:hidden}
+.skill-fill{height:100%;border-radius:100px;transition:width 1.2s cubic-bezier(0.4,0,0.2,1)}
+.fill-green{background:var(--green)}.fill-peach{background:var(--peach)}.fill-blue{background:var(--blue)}
+.exp-list{display:flex;flex-direction:column}
+.exp-row{display:grid;grid-template-columns:140px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid rgba(0,0,0,0.06)}
+.exp-row:last-child{border-bottom:none;padding-bottom:0}
+.exp-row:first-child{padding-top:0}
+.exp-org{font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.exp-dates{font-size:11px;color:var(--ink3);font-weight:300}
+.exp-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:5px}
+.exp-note{font-size:12.5px;color:var(--ink2);line-height:1.6;font-weight:300}
+.tools-card{background:var(--purple-l);border-color:transparent}
+.tools-wrap{display:flex;flex-wrap:wrap;gap:7px}
+.tool{background:rgba(124,77,220,0.12);border:1px solid rgba(124,77,220,0.2);border-radius:100px;padding:4px 11px;font-size:11.5px;color:#5c38a8}
+.edu-grid-inner{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.edu-item{border-left:3px solid var(--green);padding-left:14px}
+.edu-deg{font-size:14px;font-weight:500;margin-bottom:3px}
+.edu-uni{font-size:12px;color:var(--ink2);margin-bottom:3px}
+.edu-meta{font-size:11px;color:var(--ink3)}
+.cta-card{background:var(--ink);color:#fff;border-color:transparent;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.cta-left h3{font-size:18px;font-weight:600;margin-bottom:4px}
+.cta-left p{font-size:13px;color:rgba(255,255,255,0.5)}
+.cta-btns{display:flex;gap:10px}
+.btn{border:none;border-radius:100px;padding:10px 20px;font-size:12.5px;font-family:inherit;font-weight:500;cursor:pointer}
+.btn-light{background:#fff;color:var(--ink)}
+.btn-ghost{background:rgba(255,255,255,0.12);color:#fff;border:1px solid rgba(255,255,255,0.2)}
+@media(max-width:600px){.bento{grid-template-columns:1fr 1fr}.card.two,.card.full,.cta-card{grid-column:1/-1}.edu-grid-inner{grid-template-columns:1fr}.exp-row{grid-template-columns:1fr;gap:4px}.cta-card{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="hero">
+  <div class="hero-blob1"></div><div class="hero-blob2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Open to opportunities</div>
+    <h1>Ann <span>Maria Dev</span></h1>
+    <p class="hero-sub">I make complex things run smoothly, and people feel genuinely looked after.</p>
+    <div class="hero-pills">
+      <span class="pill">Project Coordination</span><span class="pill">People Operations</span><span class="pill">Vendor Management</span><span class="pill">Employee Experience</span><span class="pill">Office Management</span>
+    </div>
+    <div class="hero-contact">
+      <span>New Delhi · Open to Bangalore</span>
+      <a href="mailto:annmariadev2000@gmail.com">annmariadev2000@gmail.com</a>
+      <span>+91 99110 31978</span>
+    </div>
+  </div>
+</div>
+<div class="bento">
+  <div class="card stat-green"><div class="card-label">Experience</div><div class="card-big">3+</div><div class="card-desc">Years across NHS, NGO &amp; coordination roles</div></div>
+  <div class="card stat-peach"><div class="card-label">Daily volume</div><div class="card-big">25+</div><div class="card-desc">Stakeholder queries managed every single day</div></div>
+  <div class="card stat-blue"><div class="card-label">Impact</div><div class="card-big">20%</div><div class="card-desc">Turnaround time cut by building better systems</div></div>
+  <div class="card about-card two"><div class="card-label">About me</div><p>I'm an operations and coordination professional who spent three years inside the NHS keeping things moving, managing 25+ queries a day, coordinating across teams, wrangling vendors, and making sure new people felt welcomed from day one. <strong>I care about the work and the people doing it.</strong></p><p style="margin-top:12px">MSc Management from Manchester, Psychology First Class from Bangalore. I know how organisations work and why people make the decisions they do.</p></div>
+  <div class="card"><div class="card-label">Strengths</div><div class="skill-rows"><div class="skill-row-item"><span><span>Project Coordination</span><span style="color:var(--green);font-weight:500">Expert</span></span><div class="skill-bar"><div class="skill-fill fill-green" style="width:92%"></div></div></div><div class="skill-row-item"><span><span>Stakeholder Management</span><span style="color:var(--green);font-weight:500">Expert</span></span><div class="skill-bar"><div class="skill-fill fill-green" style="width:95%"></div></div></div><div class="skill-row-item"><span><span>Vendor &amp; Event Management</span><span style="color:var(--peach);font-weight:500">Strong</span></span><div class="skill-bar"><div class="skill-fill fill-peach" style="width:82%"></div></div></div><div class="skill-row-item"><span><span>Financial Tracking</span><span style="color:var(--blue);font-weight:500">Good</span></span><div class="skill-bar"><div class="skill-fill fill-blue" style="width:72%"></div></div></div><div class="skill-row-item"><span><span>Written Communication</span><span style="color:var(--green);font-weight:500">Expert</span></span><div class="skill-bar"><div class="skill-fill fill-green" style="width:90%"></div></div></div></div></div>
+  <div class="card full"><div class="card-label">Experience</div><div class="exp-list"><div class="exp-row"><div><div class="exp-org">NHS</div><div class="exp-dates">Mar 2023 – Feb 2026</div></div><div><div class="exp-title">Administrative Officer</div><div class="exp-note">First-line contact for 25+ daily queries across 5+ teams. Contributed to a tracking system that cut turnaround by 20%. Coordinated onboarding, vendors, events, and SOPs across 3 concurrent workstreams.</div></div></div><div class="exp-row"><div><div class="exp-org">Literary Aisle</div><div class="exp-dates">Jun 2021 – Dec 2022</div></div><div><div class="exp-title">Project Coordinator &amp; Communications Lead</div><div class="exp-note">End-to-end programme coordination, schedules, logistics, stakeholder comms, progress reports, and funding proposal support.</div></div></div><div class="exp-row"><div><div class="exp-org">Surya Associates</div><div class="exp-dates">May – Oct 2020</div></div><div><div class="exp-title">Operations &amp; Recruitment Consultant</div><div class="exp-note">Day-to-day operations, vendor management, candidate communications, and recruitment pipeline coordination.</div></div></div><div class="exp-row"><div><div class="exp-org">COVID-19 NGO</div><div class="exp-dates">May – Jun 2021</div></div><div><div class="exp-title">Research &amp; Data Coordinator (Volunteer)</div><div class="exp-note">Coordinated real-time data and communications across 20+ hospital sites simultaneously under acute pressure.</div></div></div></div></div>
+  <div class="card tools-card two"><div class="card-label">Tools &amp; Certifications</div><div class="tools-wrap" style="margin-top:4px"><span class="tool">Microsoft Excel</span><span class="tool">Word / PowerPoint</span><span class="tool">Outlook &amp; Teams</span><span class="tool">Google Workspace</span><span class="tool">Slack</span><span class="tool">Canva</span><span class="tool">Workday HRIS</span><span class="tool">Hi Bob HRIS</span><span class="tool">IELTS 7.5</span><span class="tool">BCG Strategy Simulation</span><span class="tool">GCP Training — NHS</span><span class="tool">Google Analytics</span></div></div>
+  <div class="card" style="background:var(--green-l);border-color:transparent"><div class="card-label">Independent Research Project</div><div style="font-size:15px;font-weight:600;color:var(--green);margin-bottom:8px;letter-spacing:-0.3px">Institutional Governance Failure — Kobe Steel Case Study</div><div style="font-size:13px;color:#2a4a38;line-height:1.65;font-weight:300">MSc dissertation examining how oversight mechanisms and incentive structures break down in complex regulated organisations. Used the Kobe Steel data falsification scandal as a primary case study to analyse institutional failure, accountability gaps, and the conditions that allow systematic non-compliance to persist undetected across large corporations. Awarded Merit (2:1), University of Manchester.</div></div>
+  <div class="card"><div class="card-label">Education</div><div class="edu-grid-inner"><div class="edu-item"><div class="edu-deg">MSc Management</div><div class="edu-uni">University of Manchester</div><div class="edu-meta">2022–23 · Merit (2:1) · Russell Group</div><div class="edu-meta" style="margin-top:5px;font-style:italic">Dissertation: Institutional Governance Failure Analysis</div></div><div class="edu-item"><div class="edu-deg">BA Psychology (Hons)</div><div class="edu-uni">Christ University, Bangalore</div><div class="edu-meta">2018–21 · First Class</div></div></div></div>
+  <div class="card cta-card full"><div class="cta-left"><h3>Let's work together</h3><p>New Delhi · Open to Bangalore · Available immediately</p></div><div class="cta-btns"><button class="btn btn-light" onclick="navigator.clipboard.writeText('annmariadev2000@gmail.com').then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy email',2000)})">Copy email</button><button class="btn btn-ghost" onclick="window.location.href='mailto:annmariadev2000@gmail.com'">Get in touch</button></div></div>
+</div>
+</div>
+</body>
+</html>
